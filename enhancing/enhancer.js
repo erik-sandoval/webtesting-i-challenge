@@ -2,11 +2,19 @@ module.exports = {
   succeed,
   fail,
   repair,
-  get,
+  get
 };
 
 function succeed(item) {
-  return { ...item };
+  if (item.enhancement < 20 && item.enhancement >= 0) {
+    item.enhancement++;
+    return { ...item };
+  }
+  if (item.enhancement === 20) {
+    return 'item max enhanced';
+  } else {
+    return 'enhancement must be a number and between 0-20';
+  }
 }
 
 function fail(item) {

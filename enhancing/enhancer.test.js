@@ -107,3 +107,17 @@ test('enhancement fails and durability decreases based on enhancement level', ()
     })
   ).toStrictEqual(`enhancement level must be a number and between 0 or 20`);
 });
+
+test('repair makes durability 1000', () => {
+  expect(
+    enhancer.repair({ name: 'Sword', enhancement: 14, durability: 24 })
+  ).toStrictEqual({ name: 'Sword', enhancement: 14, durability: 100 });
+
+  expect(
+    enhancer.repair({ name: 'Sword', enhancement: 14, durability: 190 })
+  ).toStrictEqual({ name: 'Sword', enhancement: 14, durability: 100 });
+
+  expect(
+    enhancer.repair({ name: 'Sword', enhancement: 14, durability: -1 })
+  ).toStrictEqual('this is broken beyond repair');
+});

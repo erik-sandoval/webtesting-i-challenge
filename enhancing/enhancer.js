@@ -43,7 +43,15 @@ function fail(item) {
 }
 
 function repair(item) {
-  return { ...item };
+  if (item.durability < 0) {
+    return `this is broken beyond repair`;
+  } else if (item.durability >= 0 || item.durability <= 100) {
+    const difference = 100 - item.durability;
+    return { ...item, durability: item.durability + difference };
+  } else if (item.durability > 100) {
+    const difference = item.durability - 100;
+    return { ...item, durability: item.durability - difference };
+  }
 }
 
 function get(item) {

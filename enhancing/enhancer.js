@@ -17,7 +17,29 @@ function succeed(item) {
 }
 
 function fail(item) {
-  
+  if (item.enhancement > 20 || item.enhancement < 0) {
+    return `enhancement level must be a number and between 0 or 20`;
+  } else if (item.enhancement < 15) {
+    if (item.durability < 0) {
+      return { ...item, durability: 0 };
+    } else {
+      return { ...item, durability: item.durability - 5 };
+    }
+  } else if (item.enhancement >= 15) {
+    if (item.durability < 0) {
+      return {
+        ...item,
+        durability: 0,
+        enhancement: item.enhancement - 1
+      };
+    } else {
+      return {
+        ...item,
+        durability: item.durability - 10,
+        enhancement: item.enhancement - 1
+      };
+    }
+  }
 }
 
 function repair(item) {

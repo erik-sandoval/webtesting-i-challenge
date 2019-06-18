@@ -1,12 +1,6 @@
 const enhancer = require('./enhancer.js');
 
 test('enhancement succeeds increases by 1 when between 1 and 20', () => {
-  const item = {
-    name: 'Sword',
-    enhancement: 15,
-    durabilty: 14
-  };
-
   expect(
     enhancer.succeed({
       name: 'Sword',
@@ -34,4 +28,18 @@ test('enhancement succeeds increases by 1 when between 1 and 20', () => {
       durabilty: 14
     })
   ).toBe('enhancement must be a number and between 0-20');
+});
+
+test('enhancement fails and durability decreases based on enhancement level', () => {
+  expect(
+    enhancer.fail({
+      name: 'Sword',
+      enhancement: 16,
+      durabilty: 24
+    })
+  ).toMatchObject({
+    name: 'Sword',
+    enhancement: 15,
+    durabilty: 14
+  });
 });

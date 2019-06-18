@@ -7,8 +7,7 @@ module.exports = {
 
 function succeed(item) {
   if (item.enhancement < 20 && item.enhancement >= 0) {
-    item.enhancement++;
-    return { ...item };
+    return { ...item, enhancement: item.enhancement + 1 };
   }
   if (item.enhancement === 20) {
     return 'item max enhanced';
@@ -18,7 +17,7 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item };
+  
 }
 
 function repair(item) {
